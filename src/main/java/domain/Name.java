@@ -5,11 +5,11 @@ import utils.InputCarNameException;
 import java.util.Objects;
 
 public class Name {
-    private final int MIN_CAR_NAME_LENGTH = 1;
-    private final int MAX_CAR_NAME_LENGTH = 5;
-    private final String MAX_CAR_NAME_LENGTH_NOTICE = "자동차 이름은 최대 5자까지 가능합니다.";
-    private final String MIN_CAR_NAME_LENGTH_NOTICE = "자동차 이름은 최소 1자 이상 작성해야 합니다.";
-    private final String CONTAIN_GAP_CHAR_NOTICE = "공백문자는 포함할 수 없습니다.";
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final String MAX_CAR_NAME_LENGTH_NOTICE = "자동차 이름은 최대 5자까지 가능합니다.";
+    private static final String MIN_CAR_NAME_LENGTH_NOTICE = "자동차 이름은 최소 1자 이상 작성해야 합니다.";
+    private static final String CONTAIN_GAP_CHAR_NOTICE = "공백문자는 포함할 수 없습니다.";
 
     private final String name;
 
@@ -59,7 +59,7 @@ public class Name {
 
         if (obj == null || getClass() != obj.getClass()) {
             return false;
-        }
+        } 
 
         Name objName = (Name) obj;
         return Objects.equals(name, objName.name);
