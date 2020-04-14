@@ -2,10 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.InputCarNameException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
@@ -20,7 +18,7 @@ class CarTest {
         Car car = new Car(carName);
 
         //then
-        assertThat(car.getCarName()).isEqualTo(new Name(carName));
+        assertThat(car.getCarName()).isEqualTo(carName);
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
