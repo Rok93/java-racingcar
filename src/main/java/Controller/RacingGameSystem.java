@@ -1,16 +1,11 @@
 package Controller;
 
 import domain.Car;
-import domain.Name;
-import domain.TryNumber;
 import utils.InputCarNameException;
+import utils.InputPositionException;
 import view.InputView;
-import view.OutputView;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingGameSystem {
@@ -21,10 +16,16 @@ public class RacingGameSystem {
     private static final String COMMA = ",";
 
     private List<Car> cars;
-    private TryNumber tryNumber;
 
-    public void generateCars() {
-        String carNames = InputView.inputCarNames();
+    public RacingGameSystem() {
+    }
+
+    public RacingGameSystem(List<Car> cars) {
+        this.cars = cars;
+    }
+
+
+    public List<Car> generateCars(String carNames) {
         try {
             cars = splitCarNames(carNames).stream()
                     .map(String::trim)
@@ -32,9 +33,11 @@ public class RacingGameSystem {
                     .collect(Collectors.toList());
 
             isValidateCars(cars);
-
+            return cars;
         } catch (InputCarNameException e) {
-            generateCars();
+            return generateCars(InputView.inputCarNames()); // todo: 이 부분에 대한 처리 어떻게 해야하는가? view 영역을 아예 없애고 싶은데 예외 잡을때 문제가 된다. 한번 carNames를 받아오면 다시 받아올 수 있는 방법...?
+        } catch (InputPositionException e) {
+            return generateCars(InputView.inputCarNames());
         }
     }
 
@@ -61,15 +64,6 @@ public class RacingGameSystem {
     }
 
     public void play() {
-        tryNumber = InputView.inputTryNumber();
-        OutputView.printRunResult();
-        for (int i = 0; i < tryNumber.getTryNumber(); i++) {
-            playOneTime(cars);
-            OutputView.printCurrentPosition(cars);
-        }
-    }
-
-    private void playOneTime(List<Car> cars) {
         for (Car car : cars) {
             car.goOrStop(generateRandomNumber());
         }
@@ -79,14 +73,15 @@ public class RacingGameSystem {
         return (int) (Math.random() * MAX_RANDOM_NUMBER);
     }
 
-    public void noticeWinner() {
-        String winners = cars.stream()
-                .filter(car -> car.getPosition() == getMaxPosition())
-                .map(Car::getCarName)
-                .map(Name::getName)
-                .sorted()
-                .collect(Collectors.joining(", "));
-        OutputView.printWinners(winners);
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<Car> getWinners() {
+        List<Car> winners = cars.stream()
+                .filter(car -> car.getPosition() == getMaxPosition()) //todo: 메소드 참조로 변경할 수 있을 듯하다.
+                .collect(Collectors.toList());
+        return winners;
     }
 
     private int getMaxPosition() {
