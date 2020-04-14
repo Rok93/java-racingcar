@@ -3,46 +3,46 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    private final int STEP_FORWARD_STANDARD = 4;
+    private static final int STEP_FORWARD_STANDARD = 4;
 
-    private final Name carName;
-    private int position = 0;
+    private Name carName;
+    private Position position;
 
     public Car(String carName) {
+        this(carName, 0);
+    }
+
+    public Car(String carName, int position) {
         this.carName = new Name(carName);
+        this.position = new Position(position);
     }
 
     public void goOrStop(int random) {
         if (random >= STEP_FORWARD_STANDARD) {
-            position++;
+            position.move();
         }
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
-    public Name getCarName() {
-        return carName;
+    public String getCarName() {
+        return carName.getName();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
-        Car car = (Car) obj;
-        return Objects.equals(carName, car.carName);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(carName, car.carName) &&
+                Objects.equals(position, car.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carName);
+        return Objects.hash(carName, position);
     }
 }
 
