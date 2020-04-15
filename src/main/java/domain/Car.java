@@ -23,6 +23,10 @@ public class Car {
         }
     }
 
+    public boolean matchPosition(int position) {
+        return this.position.getPosition() == position;
+    }
+
     public int getPosition() {
         return position.getPosition();
     }
@@ -44,5 +48,6 @@ public class Car {
     public int hashCode() {
         return Objects.hash(carName, position);
     }
+
 }
 
