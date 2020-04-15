@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import domain.Car;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingGameSystemTest {
 
@@ -18,7 +19,7 @@ class RacingGameSystemTest {
     void test_generateCars() {
         //given
         racingGameSystem = new RacingGameSystem();
-        String carNames = "benz,zeep,kia";
+        List<String> carNames = Arrays.asList("benz", "zeep", "kia");
 
         //when
         List<Car> cars = racingGameSystem.generateCars(carNames);
