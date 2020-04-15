@@ -3,6 +3,7 @@ package view;
 import domain.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String INPUT_CAR_NAME_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
@@ -16,7 +17,7 @@ public class OutputView {
     }
 
     private static void printCar(Car car) {
-        System.out.println(car.getCarName().getName() +
+        System.out.println(car.getCarName() +
                 ": " + printHyphenPosition(car.getPosition()));
     }
 
@@ -40,9 +41,12 @@ public class OutputView {
         System.out.println(INPUT_TRY_NUMBER_MESSAGE);
     }
 
-    public static void printWinners(String winners) {
-        System.out.println(winners + FINAL_WINNER_MESSAGE);
+    public static void printWinners(List<Car> winners) {
+        String winnerNames = winners.stream()
+                .map(Car::getCarName)
+                .sorted()
+                .collect(Collectors.joining(", "));
+        System.out.println(winnerNames + FINAL_WINNER_MESSAGE);
     }
-
 
 }
