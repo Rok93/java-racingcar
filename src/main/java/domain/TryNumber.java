@@ -17,7 +17,7 @@ public class TryNumber {
         return tryNumber;
     }
 
-    private static void isSmallerThanMinTryNumber(int tryNumber) {
+    private void isSmallerThanMinTryNumber(int tryNumber) {
         if (tryNumber < MIN_TRY_NUMBER) {
             throw new InputTryNumberException(INPUT_TRY_NUMBER_MIN_MESSAGE);
         }
