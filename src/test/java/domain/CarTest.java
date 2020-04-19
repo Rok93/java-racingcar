@@ -2,8 +2,10 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.InputCarNameException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
@@ -20,6 +22,17 @@ class CarTest {
         //then
         assertThat(car.getCarName()).isEqualTo(carName);
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @DisplayName("Car 이름에 공백을 허용하지 않는다")
+    @Test
+    public void testCarNameContainGapException() {
+        //given
+        String carName = "a bmw";
+
+        //when then
+        assertThatThrownBy(() -> new Car(carName))
+                .isExactlyInstanceOf(InputCarNameException.class);
     }
 
     @DisplayName("이름이 같은 Car는 동일한 것으로 본다.")
