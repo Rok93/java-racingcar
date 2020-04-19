@@ -18,19 +18,19 @@ public class Cars {
         this.cars = cars;
     }
 
-    private static void isValidateCars(List<Car> carList) {
+    private void isValidateCars(List<Car> carList) {
         isNotDuplicatedCarName(carList);
         isCarNumberSmallerThanTwo(carList);
     }
 
-    private static void isNotDuplicatedCarName(List<Car> carList) {
+    private void isNotDuplicatedCarName(List<Car> carList) {
         Set<Car> carSet = new HashSet<>(carList);
         if (carList.size() != carSet.size()) {
             throw new InputCarNameException(CAR_NAME_DUPLICATED_MESSAGE);
         }
     }
 
-    private static void isCarNumberSmallerThanTwo(List<Car> carList) {
+    private void isCarNumberSmallerThanTwo(List<Car> carList) {
         if (carList.size() < MIN_CAR_NUMBERS) {
             throw new InputCarNameException(CAR_NUMBER_MIN_MESSAGE);
         }
