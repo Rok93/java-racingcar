@@ -10,6 +10,7 @@ public class OutputView {
     private static final String INPUT_TRY_NUMBER_MESSAGE = "시도할 횟수는 몇회인가요?";
     private static final String FINAL_WINNER_MESSAGE = "가 최종 우승했습니다. ";
     private static final String RUN_RESULT_MESSAGE = "실행 결과 ";
+    private static final String INPUT_TRY_NUMBER_ONLY_NUMBER_MESSAGE = "숫자만 입력해주세요!";
 
     public static void printCurrentPosition(List<Car> carList) {
         carList.forEach(OutputView::printCar);
@@ -47,6 +48,10 @@ public class OutputView {
                 .sorted()
                 .collect(Collectors.joining(", "));
         System.out.println(winnerNames + FINAL_WINNER_MESSAGE);
+    }
+
+    public static void printInputMismatchMessage() {
+        System.out.println(INPUT_TRY_NUMBER_ONLY_NUMBER_MESSAGE);
     }
 
 }
