@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Cars;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -8,25 +9,14 @@ import java.util.stream.Collectors;
 public class RacingGameSystem {
     private static final int MAX_RANDOM_NUMBER = 10;
 
-    private List<Car> cars;
+    private Cars cars;
 
-    public RacingGameSystem() {
-    }
-
-    public RacingGameSystem(List<Car> cars) {
+    public RacingGameSystem(Cars cars) {
         this.cars = cars;
     }
 
-    public List<Car> generateCars(List<String> carNames) {
-        cars = carNames.stream()
-                .map(String::trim)
-                .map(Car::new)
-                .collect(Collectors.toList());
-        return cars;
-    }
-
     public void play() {
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             car.goOrStop(generateRandomNumber());
         }
     }
@@ -36,18 +26,18 @@ public class RacingGameSystem {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return cars.getCars();
     }
 
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
-        return cars.stream()
+        return cars.getCars().stream()
                 .filter(car -> car.matchPosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
-        return cars.stream()
+        return cars.getCars().stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .getAsInt();
