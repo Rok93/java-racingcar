@@ -7,12 +7,13 @@ import utils.InputTryNumberException;
 import java.util.*;
 
 public class InputView {
-    private static Scanner input = new Scanner(System.in);
     private static final String INPUT_TRY_NUMBER_ONLY_NUMBER_MESSAGE = "숫자만 입력해주세요!";
     private static final String COMMA = ",";
     private static final int MIN_CAR_NUMBERS = 2;
     private static final String CAR_NUMBER_MIN_MESSAGE = "최소 2대의 차량이 있어야합니다.";
     private static final String CAR_NAME_DUPLICATED_MESSAGE = "차량의 이름은 중복되면 안됩니다.";
+
+    private static Scanner input = new Scanner(System.in);
 
     public static List<String> inputCarNames() {
         OutputView.printInputCarNamesMessage();
