@@ -12,22 +12,8 @@ public class OutputView {
     private static final String RUN_RESULT_MESSAGE = "실행 결과 ";
     private static final String INPUT_TRY_NUMBER_ONLY_NUMBER_MESSAGE = "숫자만 입력해주세요!";
 
-    public static void printCurrentPosition(List<Car> carList) {
-        carList.forEach(OutputView::printCar);
-        System.out.println();
-    }
-
-    private static void printCar(Car car) {
-        System.out.println(car.getCarName() +
-                ": " + printHyphenPosition(car.getPosition()));
-    }
-
-    private static String printHyphenPosition(int position) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
+    public static void printCurrentPosition(String currentPositions) {
+        System.out.println(currentPositions);
     }
 
     public static void printRunResult() {
@@ -44,7 +30,7 @@ public class OutputView {
 
     public static void printWinners(List<Car> winners) {
         String winnerNames = winners.stream()
-                .map(Car::getCarName)
+                .map(Car::getName)
                 .sorted()
                 .collect(Collectors.joining(", "));
         System.out.println(winnerNames + FINAL_WINNER_MESSAGE);
