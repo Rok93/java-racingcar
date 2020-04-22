@@ -2,7 +2,6 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.InputCarNameException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,7 +30,7 @@ class NameTest {
 
         //when //then
         assertThatThrownBy(() -> new Name(carName))
-                .isExactlyInstanceOf(InputCarNameException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Name이 허용된 최소길이보다 짧으면 예외를 발생한다")
@@ -42,7 +41,7 @@ class NameTest {
 
         //when //then (생성자를 만드는 순간 바로 예외가 발생해서 따로 분리가 힘듦)
         assertThatThrownBy(() -> new Name(carName))
-                .isExactlyInstanceOf(InputCarNameException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("Name에 공백문자가 포함되면 예외를 발생한다")
@@ -53,9 +52,19 @@ class NameTest {
 
         //when //then (생성자를 만드는 순간 바로 예외가 발생해서 따로 분리가 힘듦)
         assertThatThrownBy(() -> new Name(carName))
-                .isExactlyInstanceOf(InputCarNameException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("Name은 깊은 복사가 된다")
+    @Test
+    void test_Name_DeepCopy() throws CloneNotSupportedException {
+        //given
+        Name name = new Name("benz");
 
+        //when
+        Name copiedName = name.clone();
 
+        //then
+        assertThat(copiedName).isNotEqualTo(name);
+    }
 }
