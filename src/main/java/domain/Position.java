@@ -1,23 +1,23 @@
 package domain;
 
-import utils.InputPositionException;
-
-import java.util.Objects;
-
-public class Position {
+public class Position implements Cloneable {
     private static final String MIN_CAR_POSITION_NUMBER_NOTICE = "자동차 위치는 0이상만 가능합니다.";
     private static final int POSITION_MIN_VALUE = 0;
 
-    private int position;
+    private final int position;
+
+    public Position() {
+        this(POSITION_MIN_VALUE);
+    }
 
     public Position(int position) {
-        isPositionSmallerThanZero(position);
+        validatePosition(position);
         this.position = position;
     }
 
-    private void isPositionSmallerThanZero(int position) {
+    private void validatePosition(int position) {
         if (position < POSITION_MIN_VALUE) {
-            throw new InputPositionException(MIN_CAR_POSITION_NUMBER_NOTICE);
+            throw new IllegalArgumentException(MIN_CAR_POSITION_NUMBER_NOTICE);
         }
     }
 
@@ -25,20 +25,12 @@ public class Position {
         return position;
     }
 
-    public void move() {
-        position++;
+    public Position move() {
+        return new Position(position + 1);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position1 = (Position) o;
-        return position == position1.position;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(position);
+    protected Position clone() throws CloneNotSupportedException {
+        return (Position) super.clone();
     }
 }
