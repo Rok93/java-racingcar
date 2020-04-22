@@ -2,11 +2,9 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.InputCarNameException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarTest {
 
@@ -20,8 +18,7 @@ class CarTest {
         Car car = new Car(carName);
 
         //then
-        assertThat(car.getCarName()).isEqualTo(carName);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getName()).isEqualTo(carName);
     }
 
     @DisplayName("Car 이름에 공백을 허용하지 않는다")
@@ -32,28 +29,14 @@ class CarTest {
 
         //when then
         assertThatThrownBy(() -> new Car(carName))
-                .isExactlyInstanceOf(InputCarNameException.class);
-    }
-
-    @DisplayName("이름이 같은 Car는 동일한 것으로 본다.")
-    @Test
-    void testEqualsToCar() {
-        //given
-        String carName = "benz";
-
-        //when
-        Car car1 = new Car(carName);
-        Car car2 = new Car(carName);
-
-        //then
-        assertTrue(car1.equals(car2));
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("차량이 전진하는 테스트를 진행한다.")
     @Test
     void testGo() {
         //given
-        int randomNumber = 4;
+        int randomNumber = 4; //todo: 변수명 고민, 아래도 동일
         Car car = new Car("car");
 
         //when
@@ -77,5 +60,19 @@ class CarTest {
 
         //then
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
+    }
+
+    @DisplayName("Car는 깊은 복사를 한다")
+    @Test
+    void test_Car_DeepCopy() throws CloneNotSupportedException {
+        //given
+        String carName = "benz";
+        Car benz = new Car(carName);
+
+        //when
+        Car copiedBenz = benz.clone();
+
+        //then
+        assertThat(copiedBenz.hashCode()).isNotEqualTo(benz.hashCode());
     }
 }
