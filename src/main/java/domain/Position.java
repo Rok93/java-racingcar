@@ -1,6 +1,6 @@
 package domain;
 
-public class Position implements Cloneable {
+public class Position {
     private static final String MIN_CAR_POSITION_NUMBER_NOTICE = "자동차 위치는 0이상만 가능합니다.";
     private static final int POSITION_MIN_VALUE = 0;
 
@@ -27,10 +27,5 @@ public class Position implements Cloneable {
 
     public Position move() {
         return new Position(position + 1);
-    }
-
-    @Override
-    protected Position clone() throws CloneNotSupportedException {
-        return (Position) super.clone();
     }
 }
