@@ -1,6 +1,6 @@
 package domain;
 
-public class Name implements Cloneable {
+public class Name {
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final String CAR_NAME_LENGTH_LIMIT_NOTICE = "자동차 이름은 최소 1 ~ 5글자까지 가능합니다.";
@@ -33,10 +33,5 @@ public class Name implements Cloneable {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    protected Name clone() throws CloneNotSupportedException {
-        return (Name) super.clone();
     }
 }
