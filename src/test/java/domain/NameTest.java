@@ -54,17 +54,4 @@ class NameTest {
         assertThatThrownBy(() -> new Name(carName))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("Name은 깊은 복사가 된다")
-    @Test
-    void test_Name_DeepCopy() throws CloneNotSupportedException {
-        //given
-        Name name = new Name("benz");
-
-        //when
-        Name copiedName = name.clone();
-
-        //then
-        assertThat(copiedName).isNotEqualTo(name);
-    }
 }

@@ -40,11 +40,11 @@ class CarTest {
         Car car = new Car("car");
 
         //when
-        car.goOrStop(randomNumber);
+        Car nextCar = car.goOrStop(randomNumber);
         int expectedPosition = 1;
 
         //then
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+        assertThat(nextCar.getPosition()).isEqualTo(expectedPosition);
     }
 
     @DisplayName("차량이 전진하지 않는 테스트를 진행한다.")
@@ -55,24 +55,10 @@ class CarTest {
         Car car = new Car("car");
 
         //when
-        car.goOrStop(randomNumber);
+        Car nextCar = car.goOrStop(randomNumber);
         int expectedPosition = 0;
 
         //then
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
-    }
-
-    @DisplayName("Car는 깊은 복사를 한다")
-    @Test
-    void test_Car_DeepCopy() throws CloneNotSupportedException {
-        //given
-        String carName = "benz";
-        Car benz = new Car(carName);
-
-        //when
-        Car copiedBenz = benz.clone();
-
-        //then
-        assertThat(copiedBenz.hashCode()).isNotEqualTo(benz.hashCode());
+        assertThat(nextCar.getPosition()).isEqualTo(expectedPosition);
     }
 }

@@ -19,17 +19,4 @@ class PositionTest {
         //then
         assertThat(position.getPosition()).isEqualTo(1);
     }
-
-    @DisplayName("Position은 깊은 복사를 한다.")
-    @Test
-    void test_DeepCopyPosition() throws CloneNotSupportedException {
-        //given
-        Position position = new Position();
-
-        //when
-        Position copiedPosition = position.clone();
-
-        //then
-        assertThat(copiedPosition).isNotEqualTo(position);
-    }
 }
