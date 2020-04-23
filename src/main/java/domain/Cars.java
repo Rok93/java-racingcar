@@ -25,7 +25,7 @@ public class Cars {
         validateCarNumber(cars);
     }
 
-    private void validateName(List<Car> carList) { // Set <--> List의 Size 차이를 파악해서 해결할려고 했는데 생각대로 잘 안됌
+    private void validateName(List<Car> carList) {
         int actualCarsSize = (int) carList.stream()
                 .map(Car::getName)
                 .distinct()
@@ -62,9 +62,9 @@ public class Cars {
 
     public String play() {
         StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            car.goOrStop(RandomUtil.generateRandomNumber());
-            sb.append(car.printCar());
+        for (int i = 0; i < cars.size(); i++) {
+            cars.set(i, cars.get(i).goOrStop(RandomUtil.generateRandomNumber()));
+            sb.append(cars.get(i).printCar());
         }
         return sb.toString();
     }
