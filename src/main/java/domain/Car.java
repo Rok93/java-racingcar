@@ -2,12 +2,12 @@ package domain;
 
 import java.util.Objects;
 
-public class Car implements Cloneable {
+public class Car {
     private static final int STEP_FORWARD_STANDARD = 4;
     public static final String HYPHEN = "-";
 
-    private Name name;
-    private Position position;
+    private final Name name;
+    private final Position position;
 
     public Car(String name) {
         this(name, 0);
@@ -22,10 +22,11 @@ public class Car implements Cloneable {
         this.position = position;
     }
 
-    public void goOrStop(int condition) {
+    public Car goOrStop(int condition) {
         if (condition >= STEP_FORWARD_STANDARD) {
-            this.position = position.move();
+            return new Car(name, position.move());
         }
+        return new Car(name, position);
     }
 
     public boolean matchPosition(int position) {
@@ -50,11 +51,6 @@ public class Car implements Cloneable {
             sb.append(HYPHEN);
         }
         return sb.toString();
-    }
-
-    @Override
-    protected Car clone() throws CloneNotSupportedException {
-        return (Car) super.clone();
     }
 
     @Override
