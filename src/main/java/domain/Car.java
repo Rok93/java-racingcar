@@ -26,11 +26,11 @@ public class Car {
         if (condition >= STEP_FORWARD_STANDARD) {
             return new Car(name, position.move());
         }
-        return new Car(name, position);
+        return this;
     }
 
     public boolean matchPosition(int position) {
-        return this.position.getPosition() == position;
+        return this.position.isEqualTo(position);
     }
 
     public int getPosition() {
@@ -42,15 +42,16 @@ public class Car {
     }
 
     public String printCar() {
-        return name.getName() + ": " + printPosition(position.getPosition()) + "\n";
+        return name.getName() + ": " + printPosition() + "\n";
     }
 
-    private static String printPosition(int position) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append(HYPHEN);
+    private String printPosition() { //todo: View 의 책임은 View에서 하시는게 좋을 것 같네요 (트래픽을 최소화 시키는 방법을 생각했을 때, printPosition의 위치는?)
+        StringBuilder currentPosition = new StringBuilder();
+        int positionValue = position.getPosition();
+        for (int i = 0; i < positionValue; i++) {
+            currentPosition.append(HYPHEN);
         }
-        return sb.toString();
+        return currentPosition.toString();
     }
 
     @Override
