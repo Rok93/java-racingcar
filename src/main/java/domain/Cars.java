@@ -15,7 +15,7 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         validateCars(cars);
-        for (Car car : cars) { //todo: ArrayList의 경우 addAll() 이라는 메서드로 깊은 복사가 가능하다고 하던데 생각한대로 잘 안됌
+        for (Car car : cars) {
             this.cars.add(new Car(car.getName(), car.getPosition()));
         }
     }
@@ -60,12 +60,13 @@ public class Cars {
         return cars;
     }
 
-    public String play() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < cars.size(); i++) {
+    public void play() {
+        int carNumber = cars.size();
+        for (int i = 0; i < carNumber; i++) {
             cars.set(i, cars.get(i).goOrStop(RandomUtil.generateRandomNumber()));
-            sb.append(cars.get(i).printCar());
         }
-        return sb.toString();
     }
 }
+
+//todo: - `Cars` 객체에서 play() 의 Test 코드가 필요할 것 같아요.
+//todo: - `List<Car>` 컬렉션이 존재 하는데 결과 값을 `String` 으로 변환 하는 로직이 domain 에서의 적절한 책임일까요?
