@@ -36,11 +36,11 @@ class CarTest {
     @Test
     void testGo() {
         //given
-        int randomNumber = 4; //todo: 변수명 고민, 아래도 동일
+        int condition = 4;
         Car car = new Car("car");
 
         //when
-        Car nextCar = car.goOrStop(randomNumber);
+        Car nextCar = car.goOrStop(condition);
         int expectedPosition = 1;
 
         //then
@@ -51,11 +51,11 @@ class CarTest {
     @Test
     void testStop() {
         //given
-        int randomNumber = 3;
+        int condition = 3;
         Car car = new Car("car");
 
         //when
-        Car nextCar = car.goOrStop(randomNumber);
+        Car nextCar = car.goOrStop(condition);
         int expectedPosition = 0;
 
         //then
