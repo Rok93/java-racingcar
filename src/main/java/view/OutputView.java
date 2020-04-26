@@ -12,7 +12,7 @@ public class OutputView {
     private static final String RUN_RESULT_MESSAGE = "실행 결과 ";
     private static final String INPUT_TRY_NUMBER_ONLY_NUMBER_MESSAGE = "숫자만 입력해주세요!";
 
-    public static void printCurrentPosition(String currentPositions) {
+    public static void printRacingGameProcess(String currentPositions) {
         System.out.println(currentPositions);
     }
 
