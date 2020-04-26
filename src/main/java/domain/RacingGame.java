@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.stream.Collectors;
+
 public class RacingGame {
     private Cars cars;
     private final TryNumber tryNumber;
@@ -10,18 +12,26 @@ public class RacingGame {
     }
 
     public String playRacingGame() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tryNumber.getTryNumber(); i++) {
-            sb.append(cars.play() + "\n");
+        StringBuilder racingGameProcess = new StringBuilder();
+        int repetitionNumber = tryNumber.getTryNumber();
+        for (int i = 0; i < repetitionNumber; i++) {
+            cars.play();
+            racingGameProcess.append(getOneProcessResult() + "\n");
         }
-        return sb.toString();
+        return racingGameProcess.toString();
+    }
+
+    private String getOneProcessResult() {
+        return cars.getCars().stream()
+                .map(Car::printCar)
+                .collect(Collectors.joining());
     }
 
     public Cars getCars() {
-        return cars;
+        return new Cars(cars.getCars());
     }
 
     public TryNumber getTryNumber() {
-        return tryNumber;
+        return new TryNumber(tryNumber.getTryNumber());
     }
 }
