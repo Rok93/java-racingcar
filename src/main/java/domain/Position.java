@@ -21,6 +21,10 @@ public class Position {
         }
     }
 
+    public boolean isEqualTo(int position) {
+        return this.position == position;
+    }
+
     public int getPosition() {
         return position;
     }
