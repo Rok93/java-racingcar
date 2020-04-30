@@ -3,8 +3,6 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int STEP_FORWARD_STANDARD = 4;
-
     private final Name name;
     private final Position position;
 
@@ -21,8 +19,8 @@ public class Car {
         this.position = position;
     }
 
-    public Car goOrStop(int condition) {
-        if (condition >= STEP_FORWARD_STANDARD) {
+    public Car goOrStop(boolean condition) {
+        if (condition) {
             return new Car(name, position.move());
         }
         return this;
