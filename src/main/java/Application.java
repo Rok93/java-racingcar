@@ -14,6 +14,6 @@ public class Application {
 
         OutputView.printRunResult();
         OutputView.printRacingGameProcess(racingGame.playRacingGame());
-        OutputView.printWinners(cars.getWinners());
+        OutputView.printWinners(racingGame.getWinners());
     }
 }
