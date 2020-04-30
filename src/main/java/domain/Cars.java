@@ -60,13 +60,12 @@ public class Cars {
         return cars;
     }
 
-    public void play() {
+    public Cars play() {
         int carNumber = cars.size();
+        List<Car> carList = new ArrayList<>();
         for (int i = 0; i < carNumber; i++) {
-            cars.set(i, cars.get(i).goOrStop(RandomUtil.generateRandomNumber()));
+            carList.add(cars.get(i).goOrStop(RandomUtil.generateRandomNumber()));
         }
+        return new Cars(carList);
     }
 }
-
-//todo: - `Cars` 객체에서 play() 의 Test 코드가 필요할 것 같아요.
-//todo: - `List<Car>` 컬렉션이 존재 하는데 결과 값을 `String` 으로 변환 하는 로직이 domain 에서의 적절한 책임일까요?
