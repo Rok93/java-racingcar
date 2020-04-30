@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Car {
     private static final int STEP_FORWARD_STANDARD = 4;
-    public static final String HYPHEN = "-";
 
     private final Name name;
     private final Position position;
@@ -39,19 +38,6 @@ public class Car {
 
     public String getName() {
         return name.getName();
-    }
-
-    public String printCar() {
-        return name.getName() + ": " + printPosition() + "\n";
-    }
-
-    private String printPosition() { //todo: View 의 책임은 View에서 하시는게 좋을 것 같네요 (트래픽을 최소화 시키는 방법을 생각했을 때, printPosition의 위치는?)
-        StringBuilder currentPosition = new StringBuilder();
-        int positionValue = position.getPosition();
-        for (int i = 0; i < positionValue; i++) {
-            currentPosition.append(HYPHEN);
-        }
-        return currentPosition.toString();
     }
 
     @Override
