@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGame {
     private Cars cars;
@@ -11,20 +12,18 @@ public class RacingGame {
         this.tryNumber = new TryNumber(tryNumber.getTryNumber());
     }
 
-    public String playRacingGame() {
-        StringBuilder racingGameProcess = new StringBuilder();
+    public List<Cars> playRacingGame() {
         int repetitionNumber = tryNumber.getTryNumber();
+        List<Cars> carsList = new ArrayList<>();
         for (int i = 0; i < repetitionNumber; i++) {
-            cars.play();
-            racingGameProcess.append(getOneProcessResult() + "\n");
+            cars = cars.play();
+            carsList.add(cars);
         }
-        return racingGameProcess.toString();
+        return carsList;
     }
 
-    private String getOneProcessResult() {
-        return cars.getCars().stream()
-                .map(Car::printCar)
-                .collect(Collectors.joining());
+    public List<Car> getWinners() {
+        return cars.getWinners();
     }
 
     public Cars getCars() {
