@@ -64,7 +64,7 @@ public class Cars {
         int carNumber = cars.size();
         List<Car> carList = new ArrayList<>();
         for (int i = 0; i < carNumber; i++) {
-            carList.add(cars.get(i).goOrStop(RandomUtil.generateRandomNumber()));
+            carList.add(cars.get(i).goOrStop(RandomUtil.isGo()));
         }
         return new Cars(carList);
     }
