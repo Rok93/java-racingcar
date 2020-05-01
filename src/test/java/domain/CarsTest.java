@@ -85,4 +85,34 @@ class CarsTest {
         assertThat(winners).hasSize(2);
         assertThat(winners).contains(benz, zeep);
     }
+
+    @DisplayName("모든 자동차를 한 보 전진시키는 싸이클을 진행한다")
+    @Test
+    void test_playFunction1() {
+        //given
+        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("zeep"), new Car("kia")));
+
+        //when
+        cars = cars.play(() -> true);
+
+        //then
+        assertThat(cars.getCars().get(0).getPosition()).isEqualTo(1);
+        assertThat(cars.getCars().get(1).getPosition()).isEqualTo(1);
+        assertThat(cars.getCars().get(2).getPosition()).isEqualTo(1);
+    }
+
+    @DisplayName("모든 자동차를 정지하는 싸이클을 진행한다")
+    @Test
+    void test_playFunction2() {
+        //given
+        Cars cars = new Cars(Arrays.asList(new Car("benz"), new Car("zeep"), new Car("kia")));
+
+        //when
+        cars = cars.play(() -> false);
+
+        //then
+        assertThat(cars.getCars().get(0).getPosition()).isEqualTo(0);
+        assertThat(cars.getCars().get(1).getPosition()).isEqualTo(0);
+        assertThat(cars.getCars().get(2).getPosition()).isEqualTo(0);
+    }
 }
