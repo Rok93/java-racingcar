@@ -1,5 +1,7 @@
 package domain;
 
+import utils.Move;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +14,11 @@ public class RacingGame {
         this.tryNumber = new TryNumber(tryNumber.getTryNumber());
     }
 
-    public List<Cars> playRacingGame() {
+    public List<Cars> playRacingGame(Move move) {
         int repetitionNumber = tryNumber.getTryNumber();
         List<Cars> carsList = new ArrayList<>();
         for (int i = 0; i < repetitionNumber; i++) {
-            cars = cars.play();
+            cars = cars.play(move);
             carsList.add(cars);
         }
         return carsList;
