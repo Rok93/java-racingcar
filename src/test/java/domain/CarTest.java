@@ -36,7 +36,7 @@ class CarTest {
     @Test
     void testGo() {
         //given
-        int condition = 4;
+        boolean condition = true;
         Car car = new Car("car");
 
         //when
@@ -51,7 +51,7 @@ class CarTest {
     @Test
     void testStop() {
         //given
-        int condition = 3;
+        boolean condition = false;
         Car car = new Car("car");
 
         //when
