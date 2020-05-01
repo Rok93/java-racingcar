@@ -1,6 +1,6 @@
 package domain;
 
-import utils.RandomUtil;
+import utils.Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +60,11 @@ public class Cars {
         return cars;
     }
 
-    public Cars play() {
+    public Cars play(Move move) {
         int carNumber = cars.size();
         List<Car> carList = new ArrayList<>();
         for (int i = 0; i < carNumber; i++) {
-            carList.add(cars.get(i).goOrStop(RandomUtil.isGo()));
+            carList.add(cars.get(i).goOrStop(move.isGo()));
         }
         return new Cars(carList);
     }
