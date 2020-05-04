@@ -7,9 +7,6 @@ public class RacingCarMove implements Move {
     @Override
     public boolean isGo() {
         int randomNumber = (int) (Math.random() * MAX_RANDOM_NUMBER);
-        if (randomNumber >= STEP_FORWARD_STANDARD) {
-            return true;
-        }
-        return false;
+        return randomNumber >= STEP_FORWARD_STANDARD;
     }
 }
