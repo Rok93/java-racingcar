@@ -23,8 +23,8 @@ public class RacingGame {
     }
 
     public List<Car> getWinners() {
-        return cars.getWinners();
-    } //todo: 외부에 주솟값을 그대로 노출하면 어떻게 될까요?
+        return new ArrayList<>(cars.getWinners());
+    }
 
     public Cars getCars() {
         return new Cars(cars.getCars());
