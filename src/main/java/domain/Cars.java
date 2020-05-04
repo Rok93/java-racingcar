@@ -55,7 +55,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return new ArrayList<>(cars);
     }
 
     public Cars play(Move move) {
