@@ -14,7 +14,7 @@ public class Car {
         this(new Name(name), new Position(position));
     }
 
-    public Car(Name name, Position position) {
+    private Car(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
