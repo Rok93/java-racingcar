@@ -1,7 +1,7 @@
 import domain.Cars;
 import domain.RacingGame;
 import domain.TryNumber;
-import utils.RacingCarMove;
+import domain.RacingCarMove;
 import view.InputView;
 import view.OutputView;
 

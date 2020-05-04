@@ -1,4 +1,4 @@
-package utils;
+package domain;
 
 public class RacingCarMove implements Move {
     private static final int MAX_RANDOM_NUMBER = 10;
