@@ -1,6 +1,6 @@
 package domain;
 
-public class RacingCarMove implements Move {
+public class RacingCarMovement implements Movement {
     private static final int MAX_RANDOM_NUMBER = 10;
     private static final int STEP_FORWARD_STANDARD = 4;
 

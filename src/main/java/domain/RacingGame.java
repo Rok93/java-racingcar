@@ -12,11 +12,11 @@ public class RacingGame {
         this.tryNumber = new TryNumber(tryNumber.getTryNumber());
     }
 
-    public List<Cars> playRacingGame(Move move) { //todo: 해당 코드에 대한 테스트 코드가 있으면 좋을 것 같다.
+    public List<Cars> playRacingGame(Movement movement) {
         int repetitionNumber = tryNumber.getTryNumber();
         List<Cars> cars = new ArrayList<>();
         for (int i = 0; i < repetitionNumber; i++) {
-            this.cars = this.cars.play(move);
+            this.cars = this.cars.play(movement);
             cars.add(this.cars);
         }
         return cars;

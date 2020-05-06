@@ -58,11 +58,11 @@ public class Cars {
         return new ArrayList<>(cars);
     }
 
-    public Cars play(Move move) {
+    public Cars play(Movement movement) {
         int carNumber = this.cars.size();
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carNumber; i++) {
-            cars.add(this.cars.get(i).goOrStop(move.isGo()));
+            cars.add(this.cars.get(i).goOrStop(movement.isGo()));
         }
         return new Cars(cars);
     }

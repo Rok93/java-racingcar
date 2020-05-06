@@ -1,5 +1,5 @@
 package domain;
 
-public interface Move {
+public interface Movement {
     boolean isGo();
 }
