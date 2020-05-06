@@ -14,12 +14,12 @@ public class RacingGame {
 
     public List<Cars> playRacingGame(Move move) { //todo: 해당 코드에 대한 테스트 코드가 있으면 좋을 것 같다.
         int repetitionNumber = tryNumber.getTryNumber();
-        List<Cars> carsList = new ArrayList<>();
+        List<Cars> cars = new ArrayList<>();
         for (int i = 0; i < repetitionNumber; i++) {
-            cars = cars.play(move);
-            carsList.add(cars);
+            this.cars = this.cars.play(move);
+            cars.add(this.cars);
         }
-        return carsList;
+        return cars;
     }
 
     public List<Car> getWinners() {
