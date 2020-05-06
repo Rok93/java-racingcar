@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     private static void printCar(Car car) {
-        System.out.println(car.getName() + ": " + printPosition(car.getPosition()) + "\n");
+        System.out.println(car.getName() + ": " + printPosition(car.getPosition()));
     }
 
     private static String printPosition(int position) {
