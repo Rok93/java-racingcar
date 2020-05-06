@@ -13,7 +13,6 @@ public class Application {
 
         RacingGame racingGame = new RacingGame(cars, tryNumber);
 
-        OutputView.printRunResult();
         OutputView.printRacingGameProcess(racingGame.playRacingGame(new RacingCarMove()));
         OutputView.printWinners(racingGame.getWinners());
     }

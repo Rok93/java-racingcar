@@ -14,16 +14,16 @@ public class OutputView {
     public static final String HYPHEN = "-";
 
     public static void printRacingGameProcess(List<Cars> carsList) {
+        System.out.println(RUN_RESULT_MESSAGE);
         for (Cars cars : carsList) {
             cars.getCars().stream()
-                    .map(OutputView::printCar)
-                    .forEach(System.out::print);
+                    .forEach(car -> OutputView.printCar(car));
             System.out.println();
         }
     }
 
-    private static String printCar(Car car) {
-        return car.getName() + ": " + printPosition(car.getPosition()) + "\n";
+    private static void printCar(Car car) {
+        System.out.println(car.getName() + ": " + printPosition(car.getPosition()) + "\n");
     }
 
     private static String printPosition(int position) {
@@ -32,10 +32,6 @@ public class OutputView {
             currentPosition.append(HYPHEN);
         }
         return currentPosition.toString();
-    }
-
-    public static void printRunResult() {
-        System.out.println(RUN_RESULT_MESSAGE);
     }
 
     public static void printInputCarNamesMessage() {
