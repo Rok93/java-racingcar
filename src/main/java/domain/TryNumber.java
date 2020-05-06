@@ -1,7 +1,5 @@
 package domain;
 
-import utils.InputTryNumberException;
-
 public class TryNumber {
     private static final int MIN_TRY_NUMBER = 1;
     private static final String INPUT_TRY_NUMBER_MIN_MESSAGE = "최소 시도 횟수는 1회입니다.";
@@ -9,7 +7,7 @@ public class TryNumber {
     private final int tryNumber;
 
     public TryNumber(int tryNumber) {
-        isSmallerThanMinTryNumber(tryNumber);
+        validateTryNumber(tryNumber);
         this.tryNumber = tryNumber;
     }
 
@@ -17,9 +15,9 @@ public class TryNumber {
         return tryNumber;
     }
 
-    private static void isSmallerThanMinTryNumber(int tryNumber) {
+    private void validateTryNumber(int tryNumber) {
         if (tryNumber < MIN_TRY_NUMBER) {
-            throw new InputTryNumberException(INPUT_TRY_NUMBER_MIN_MESSAGE);
+            throw new IllegalArgumentException(INPUT_TRY_NUMBER_MIN_MESSAGE);
         }
     }
 }

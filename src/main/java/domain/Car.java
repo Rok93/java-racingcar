@@ -3,36 +3,39 @@ package domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int STEP_FORWARD_STANDARD = 4;
+    private final Name name;
+    private final Position position;
 
-    private Name carName;
-    private Position position;
-
-    public Car(String carName) {
-        this(carName, 0);
+    public Car(String name) {
+        this(name, 0);
     }
 
-    public Car(String carName, int position) {
-        this.carName = new Name(carName);
-        this.position = new Position(position);
+    public Car(String name, int position) {
+        this(new Name(name), new Position(position));
     }
 
-    public void goOrStop(int random) {
-        if (random >= STEP_FORWARD_STANDARD) {
-            position.move();
+    private Car(Name name, Position position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public Car goOrStop(boolean condition) {
+        if (condition) {
+            return new Car(name, position.move());
         }
+        return this;
     }
 
     public boolean matchPosition(int position) {
-        return this.position.getPosition() == position;
+        return this.position.isEqualTo(position);
     }
 
     public int getPosition() {
         return position.getPosition();
     }
 
-    public String getCarName() {
-        return carName.getName();
+    public String getName() {
+        return name.getName();
     }
 
     @Override
@@ -40,14 +43,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(carName, car.carName) &&
-                Objects.equals(position, car.position);
+        return Objects.equals(name.getName(), car.name.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(carName, position);
+        return super.hashCode();
     }
-
 }
 
