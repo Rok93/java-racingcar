@@ -23,19 +23,19 @@ public class Cars {
         validateCarNumber(cars);
     }
 
-    private void validateName(List<Car> carList) {
-        int actualCarsSize = (int) carList.stream()
+    private void validateName(List<Car> cars) {
+        int actualCarsSize = (int) cars.stream()
                 .map(Car::getName)
                 .distinct()
                 .count();
 
-        if (carList.size() != actualCarsSize) {
+        if (cars.size() != actualCarsSize) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATED_MESSAGE);
         }
     }
 
-    private void validateCarNumber(List<Car> carList) {
-        if (carList.size() < MIN_CAR_NUMBERS) {
+    private void validateCarNumber(List<Car> cars) {
+        if (cars.size() < MIN_CAR_NUMBERS) {
             throw new IllegalArgumentException(CAR_NUMBER_MIN_MESSAGE);
         }
     }
@@ -59,11 +59,11 @@ public class Cars {
     }
 
     public Cars play(Move move) {
-        int carNumber = cars.size();
-        List<Car> carList = new ArrayList<>();
+        int carNumber = this.cars.size();
+        List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carNumber; i++) {
-            carList.add(cars.get(i).goOrStop(move.isGo()));
+            cars.add(this.cars.get(i).goOrStop(move.isGo()));
         }
-        return new Cars(carList);
+        return new Cars(cars);
     }
 }
